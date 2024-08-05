@@ -1,0 +1,41 @@
+{
+  "name": "chef-manage",
+  "private": true,
+  "version": "1.7.1",
+  "author": "Chef Visual Interaction Team <webui@chef.io>",
+  "description": "Chef Management Console",
+  "contributors": [
+    "Scott Christopherson <scott@chef.io>",
+    "Tyler Cloke <tyler@chef.io>",
+    "Noah Kantrowitz <noah@coderanger.net>",
+    "Christian Nunciato <cnunciato@chef.io>",
+    "Matt Peck <matthew@chef.io>",
+    "Jordan Running <jr@chef.io>",
+    "Nathan Smith <smith@chef.io>"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/opscode/chef-manage.git"
+  },
+  "scripts": {
+    "build": "npm run build-templates",
+    "build-templates": "jade-amd --from app/assets/templates --to app/assets/javascripts/templates --jade-runtime 'jade/runtime'",
+    "test": "karma start spec/javascripts/karma.conf.coffee",
+    "watch": "npm run watch-build & npm run watch-test",
+    "watch-build": "npm run watch-build-templates",
+    "watch-build-templates": "watchy --watch app/assets/templates npm run build-templates",
+    "watch-test": "karma start spec/javascripts/karma.conf.coffee --auto-watch --no-single-run"
+  },
+  "devDependencies": {
+    "jade": "=0.27.0",
+    "jade-amd": "~0.2.2",
+    "js-yaml": "~3.0.2",
+    "karma": "~0.10.0",
+    "karma-coffee-preprocessor": "~0.1.0",
+    "karma-mocha": "=0.1.3",
+    "karma-osx-reporter": "~0.0.3",
+    "karma-spec-reporter": "~0.0.12",
+    "mocha": "~1.11.0",
+    "watchy": "~0.4.4"
+  }
+}

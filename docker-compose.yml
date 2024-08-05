@@ -1,0 +1,29 @@
+version: '2'
+services:
+  chef-server:
+    image: devchef/chef-server-12
+    ports:
+      - "1443:443"
+    volumes:
+      - ".keys:/volumes/keys"
+  redis:
+    image: redis
+    ports:
+      - "16379:6379"
+  #
+  # Due to limitations in Docker + Rails, Chef Manage running in a container
+  # is SUPER slow (unusably so). Leaving this here to easy uncommenting when
+  # speeds improve
+  #
+  # chef-manage:
+  #   build: ./
+  #   links:
+  #     - chef-server
+  #     - redis
+  #   ports:
+  #     - 3000:3000
+  #   volumes:
+  #     - ./app:/usr/src/app/app
+  #     - ./lib:/usr/src/app/lib
+  #   volumes_from:
+  #     - chef-server
